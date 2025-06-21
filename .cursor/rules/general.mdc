@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+新しくhandlerを追加する際はhandler.goに実装してください
