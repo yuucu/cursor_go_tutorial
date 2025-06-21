@@ -1,15 +1,25 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
-	"github.com/labstack/echo/v4"
+	api "github.com/yuucu/cursor_go_tutorial/handlers"
 )
 
 func main() {
-	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-	e.Logger.Fatal(e.Start(":1323"))
+	// Create hello handler instance
+	helloHandler := api.NewHelloHandler()
+
+	// Create server with the handler
+	srv, err := api.NewServer(helloHandler)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Start server on port 1323
+	log.Println("Starting server on :1323")
+	if err := http.ListenAndServe(":1323", srv); err != nil {
+		log.Fatal(err)
+	}
 }

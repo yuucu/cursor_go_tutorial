@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Hello API
+  description: Simple API that echoes hello messages
+  version: 1.0.0
+servers:
+  - url: http://localhost:1323
+    description: Local development server
+
+paths:
+  /hello:
+    post:
+      tags:
+        - hello
+      summary: Echo hello message
+      description: Receives a hello message and returns it back
+      operationId: postHello
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HelloRequest'
+      responses:
+        '200':
+          description: Successfully echoed the hello message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    HelloRequest:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: The hello message to echo
+          example: "hello"
+    
+    HelloResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: The echoed hello message
+          example: "hello"
+    
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Invalid request" 
