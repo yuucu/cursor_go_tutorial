@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+## API 作成ルール
+- まずはopenapi.yamlを作成し、API定義を作成してください
+- https://github.com/ogen-go/ogen を用いて、 `handlers` フォルダにtagごとにhandlerを自動生成して下さい
+- 自動生成されたhandlerの中の実装をして下さい
